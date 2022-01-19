@@ -28,6 +28,20 @@ services:
       - kafka_0_data:/bitnami/kafka
     depends_on:
       - zookeeper
+  mysql:
+    image: mysql:8.0.27
+    hostname: "mysql"
+    container_name: "mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - "./db/init:/docker-entrypoint-initdb.d"
   connect:
     build:
       context: .
@@ -37,6 +51,7 @@ services:
       - "8083:8083"
     depends_on:
       - kafka
+      - mysql
     volumes:
       - ./tmp:/tmp
 volumes:
