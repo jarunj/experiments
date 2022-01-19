@@ -28,6 +28,19 @@ services:
       - kafka_0_data:/bitnami/kafka
     depends_on:
       - zookeeper
+  schema:
+    image: confluentinc/cp-schema-registry:latest
+    hostname: schema
+    container_name: schema
+    restart: always
+    depends_on:
+      - kafka
+    ports:
+      - "8085:8085"
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=kafka:9092
+      - SCHEMA_REGISTRY_HOST_NAME=schema
+      - SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8085
   mysql:
     image: mysql:8.0.27
     hostname: "mysql"

@@ -6,11 +6,17 @@ COPY connect-source-mysql.properties /opt/kafka/config/
 
 COPY start-kafka.sh /usr/bin/
 
+
 RUN mkdir -p /opt/kafka-connect/plugins
+
+COPY confluentinc-kafka-connect-protobuf-converter-7.0.1.zip /opt/kafka-connect/plugins/
+
 
 RUN curl https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/1.8.0.Final/debezium-connector-mysql-1.8.0.Final-plugin.tar.gz -o /opt/kafka-connect/plugins/debezium-connector-mysql-1.8.0.Final-plugin.tar.gz \
 && cd /opt/kafka-connect/plugins \
 && tar xzf debezium-connector-mysql-1.8.0.Final-plugin.tar.gz \
+&& unzip confluentinc-kafka-connect-protobuf-converter-7.0.1.zip \
+&& rm confluentinc-kafka-connect-protobuf-converter-7.0.1.zip \
 && rm debezium-connector-mysql-1.8.0.Final-plugin.tar.gz
 
 
