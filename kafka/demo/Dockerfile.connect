@@ -3,6 +3,7 @@ FROM wurstmeister/kafka:latest
 COPY connect.properties /opt/kafka/config/
 COPY connect-source-file.properties /opt/kafka/config/
 COPY connect-source-mysql.properties /opt/kafka/config/
+COPY connect-sink-file.properties /opt/kafka/config/
 
 COPY start-kafka.sh /usr/bin/
 
