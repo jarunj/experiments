@@ -34,4 +34,3 @@ CREATE TABLE `demo`.`debezium_signal` (
 	data VARCHAR(2048) NULL
 );
 
-
