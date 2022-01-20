@@ -11,6 +11,12 @@ GRANT DELETE ON demo.* TO  'demo'@'%';
 GRANT LOCK TABLES ON demo.* TO  'demo'@'%';
 GRANT REPLICATION CLIENT ON *.* TO  'demo'@'%';
 GRANT REPLICATION SLAVE ON *.* TO  'demo'@'%';
+GRANT RELOAD ON *.* TO  'demo'@'%';
+GRANT FLUSH_TABLES ON *.* TO  'demo'@'%';
+
+
+gtid_mode=ON;
+enforce_gtid_consistency=ON;
 
 
 
@@ -25,3 +31,10 @@ CREATE TABLE `demo`.`users` (
 	`modified_time` datetime DEFAULT NULL,
 	PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `demo`.`debezium_signal` (
+	id VARCHAR(42) PRIMARY KEY,
+	type VARCHAR(32) NOT NULL,
+	data VARCHAR(2048) NULL
+);
