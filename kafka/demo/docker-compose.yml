@@ -9,7 +9,7 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     volumes:
-      - zookeeper_data:/bitnami/zookeeper
+      - ./zookeeper_data:/bitnami/zookeeper
   kafka:
     image: docker.io/bitnami/kafka:3
     hostname: "kafka"
@@ -25,7 +25,7 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:29092
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
     volumes:
-      - kafka_0_data:/bitnami/kafka
+      - ./kafka_data:/bitnami/kafka
     depends_on:
       - zookeeper
   schema:
@@ -67,8 +67,3 @@ services:
       - mysql
     volumes:
       - ./tmp:/tmp
-volumes:
-  zookeeper_data:
-    driver: local
-  kafka_0_data:
-    driver: local

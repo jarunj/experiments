@@ -15,11 +15,6 @@ GRANT RELOAD ON *.* TO  'demo'@'%';
 GRANT FLUSH_TABLES ON *.* TO  'demo'@'%';
 
 
-gtid_mode=ON;
-enforce_gtid_consistency=ON;
-
-
-
 CREATE TABLE `demo`.`users` (
 	`user_id` int NOT NULL AUTO_INCREMENT,
 	`user_name` varchar(100) NOT NULL,
@@ -38,3 +33,5 @@ CREATE TABLE `demo`.`debezium_signal` (
 	type VARCHAR(32) NOT NULL,
 	data VARCHAR(2048) NULL
 );
+
+
